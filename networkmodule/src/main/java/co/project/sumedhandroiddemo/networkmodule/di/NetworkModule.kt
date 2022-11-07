@@ -1,30 +1,26 @@
-package co.project.sumedhandroiddemo.di
+package co.project.sumedhandroiddemo.networkmodule.di
 
 
 import androidx.annotation.NonNull
-import co.project.rewards.network.APIinterface
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.components.SingletonComponent
+import co.project.sumedhandroiddemo.networkmodule.network.APIinterface
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 
-@Module
-@dagger.hilt.InstallIn(SingletonComponent::class)
+@dagger.Module
+@dagger.hilt.InstallIn(dagger.hilt.components.SingletonComponent::class)
 object NetworkModule {
-    @Provides
-    @Singleton
-    fun provideHttpClient(): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
+    @dagger.Provides
+    @javax.inject.Singleton
+    fun provideHttpClient(): okhttp3.OkHttpClient {
+        val httpClient = okhttp3.OkHttpClient.Builder()
         httpClient.addInterceptor { chain ->
             val original = chain.request()
-            val request: Request.Builder = original.newBuilder()
+            val request: okhttp3.Request.Builder = original.newBuilder()
             request.header("Content-Type", "application/json")
 
             chain.proceed(request.build())
@@ -37,20 +33,20 @@ object NetworkModule {
         return httpClient.build()
     }
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(@NonNull okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
+    @dagger.Provides
+    @javax.inject.Singleton
+    fun provideRetrofit(@NonNull okHttpClient: okhttp3.OkHttpClient): retrofit2.Retrofit {
+        return retrofit2.Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("https://run.mocky.io/")
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://demo.ezetap.com/")
+                .addCallAdapterFactory(retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create())
+                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
                 .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideAPIinterface(@NonNull retrofit: Retrofit): APIinterface =
+    @dagger.Provides
+    @javax.inject.Singleton
+    fun provideAPIinterface(@NonNull retrofit: retrofit2.Retrofit): APIinterface =
             retrofit.create(APIinterface::class.java)
 
 

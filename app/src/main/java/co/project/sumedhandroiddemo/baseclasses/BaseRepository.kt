@@ -2,7 +2,7 @@ package co.project.rewards.baseclasses
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import co.project.rewards.network.APIinterface
+import co.project.sumedhandroiddemo.networkmodule.network.APIinterface
 import co.project.sumedhandroiddemo.baseclasses.ErrorWrapper
 import co.project.sumedhandroiddemo.baseclasses.ResponseWrapper
 import com.google.gson.Gson

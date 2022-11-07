@@ -1,10 +1,10 @@
 package co.project.sumedhandroiddemo.dashboard.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 
 @Parcelize

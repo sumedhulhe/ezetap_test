@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class DashboardRepository @Inject constructor(val service: APIinterface) : BaseRepository() {
 
-    fun getCardResponse(
+    fun fetchCustomUI(
             apiResponse: MutableLiveData<ResponseWrapper>,
             serviceID: String,
 

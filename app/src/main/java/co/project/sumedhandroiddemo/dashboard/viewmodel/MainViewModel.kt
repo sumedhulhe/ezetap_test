@@ -5,7 +5,7 @@ import co.project.sumedhandroiddemo.baseclasses.BaseViewModel
 import co.project.sumedhandroiddemo.baseclasses.CardResponseWrapper
 import co.project.sumedhandroiddemo.baseclasses.ResponseWrapper
 import co.project.sumedhandroiddemo.repository.DashboardRepository
-import co.project.sumedhandroiddemo.utils.Constants
+import co.project.sumedhandroiddemo.networkmodule.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,8 +18,8 @@ class MainViewModel  @Inject constructor(private val repository: DashboardReposi
     init {
         if (!_getResponse.hasObservers()) observerApiResponse()
     }
-    fun getTokenForCampaign() {
-        repository.getCardResponse(_getResponse, Constants.ApiServiceId.CARD_API_SERVICE_ID)
+    fun getCustomUi() {
+        repository.fetchCustomUI(_getResponse, co.project.sumedhandroiddemo.networkmodule.utils.Constants.ApiServiceId.CARD_API_SERVICE_ID)
     }
 
     private fun observerApiResponse() {
@@ -34,7 +34,7 @@ class MainViewModel  @Inject constructor(private val repository: DashboardReposi
                 )
             } else {
                 when (response.serviceID) {
-                    Constants.ApiServiceId.CARD_API_SERVICE_ID -> {
+                    co.project.sumedhandroiddemo.networkmodule.utils.Constants.ApiServiceId.CARD_API_SERVICE_ID -> {
                         sendResponseToView(
                                 responseString = response.message,
                                 isSuccess = true,

@@ -1,4 +1,4 @@
-package co.project.sumedhandroiddemo.utils
+package co.project.sumedhandroiddemo.networkmodule.utils
 
 interface Constants {
     interface ApiMethod {
@@ -7,6 +7,7 @@ interface Constants {
             const val POST_METHOD = 1
             const val PUT_METHOD = 2
             const val DELETE_METHOD = 3
+            const val INTENT_DATA_KEY="INTENT_DATA_KEY"
 
         }
 }
@@ -17,7 +18,7 @@ interface Constants {
     }
     interface ApiUrl{
         companion object{
-            const val CARD_API_URL="v3/c52cf4ce-a639-42d7-a606-2c0a8b848536"
+            const val CARD_API_URL="mobileapps/android_assignment.json"
         }
     }
 }

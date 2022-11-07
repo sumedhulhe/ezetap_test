@@ -1,47 +1,45 @@
-package co.project.rewards.network
+package co.project.sumedhandroiddemo.networkmodule.network
 
 
 
-import co.project.sumedhandroiddemo.utils.Constants.ApiMethod.Companion.DELETE_METHOD
-import co.project.sumedhandroiddemo.utils.Constants.ApiMethod.Companion.GET_METHOD
-import co.project.sumedhandroiddemo.utils.Constants.ApiMethod.Companion.POST_METHOD
-import co.project.sumedhandroiddemo.utils.Constants.ApiMethod.Companion.PUT_METHOD
-import io.reactivex.Observable
-import retrofit2.http.*
+import co.project.sumedhandroiddemo.networkmodule.utils.Constants.ApiMethod.Companion.DELETE_METHOD
+import co.project.sumedhandroiddemo.networkmodule.utils.Constants.ApiMethod.Companion.GET_METHOD
+import co.project.sumedhandroiddemo.networkmodule.utils.Constants.ApiMethod.Companion.POST_METHOD
+import co.project.sumedhandroiddemo.networkmodule.utils.Constants.ApiMethod.Companion.PUT_METHOD
 
 interface APIinterface {
 
-    @POST("{url}")
+    @retrofit2.http.POST("{url}")
     fun postMethod(
-            @Path(
+            @retrofit2.http.Path(
                     value = "url",
                     encoded = true
             ) methodUrl: String,
-            @Body requestObj: Any?,
-            @QueryMap queryMap: HashMap<String, Any>
-    ): Observable<Any>
+            @retrofit2.http.Body requestObj: Any?,
+            @retrofit2.http.QueryMap queryMap: HashMap<String, Any>
+    ): io.reactivex.Observable<Any>
 
-    @GET
+    @retrofit2.http.GET
     fun getMethod(
-            @Url methodUrl: String,
-            @QueryMap queryMap: HashMap<String, Any>
-    ): Observable<Any>
+            @retrofit2.http.Url methodUrl: String,
+            @retrofit2.http.QueryMap queryMap: HashMap<String, Any>
+    ): io.reactivex.Observable<Any>
 
-    @PUT("{url}")
+    @retrofit2.http.PUT("{url}")
     fun putMethod(
-            @Path(
+            @retrofit2.http.Path(
                     value = "url",
                     encoded = true
             ) methodUrl: String,
-            @Body requestObj: Any?,
-            @QueryMap queryMap: HashMap<String, Any>
-    ): Observable<Any>
+            @retrofit2.http.Body requestObj: Any?,
+            @retrofit2.http.QueryMap queryMap: HashMap<String, Any>
+    ): io.reactivex.Observable<Any>
 
-    @DELETE
+    @retrofit2.http.DELETE
     fun deleteMethod(
-            @Url methodUrl: String,
-            @QueryMap queryMap: HashMap<String, Any>
-    ): Observable<Any>
+            @retrofit2.http.Url methodUrl: String,
+            @retrofit2.http.QueryMap queryMap: HashMap<String, Any>
+    ): io.reactivex.Observable<Any>
 
 
     companion object {
@@ -51,8 +49,8 @@ interface APIinterface {
                 url: String,
                 requestObj: Any?,
                 queryParam: HashMap<String, Any>
-        ): Observable<Any>? {
-            var call: Observable<Any>? = null
+        ): io.reactivex.Observable<Any>? {
+            var call: io.reactivex.Observable<Any>? = null
             when (apiMethod) {
                 GET_METHOD -> call = apiCallInterface?.getMethod(url, queryParam)
                 POST_METHOD -> call = apiCallInterface?.postMethod(url, requestObj, queryParam)
